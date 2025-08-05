@@ -14,6 +14,23 @@ remotes::install_github("weirthevergreen/SharePointR")
 devtools::install_github("weirthevergreen/SharePointR")
 ```
 
+**Note:** This package requires GitHub authentication. You must have a valid GitHub Personal Access Token (PAT) configured in your R environment to install from this private repository.
+
+### Setting up GitHub Authentication (First-time setup)
+
+If you haven't set up a GitHub PAT for R:
+
+```r
+# Configure Git credentials
+usethis::use_git_config(user.name = "YourGitHubUsername", user.email = "your.email@example.com")
+
+# Create a GitHub Personal Access Token (opens browser)
+usethis::create_github_token()
+
+# Store the PAT in your R environment
+gitcreds::gitcreds_set()
+```
+
 ## Important: Authentication Requirements
 
 **Browser Authentication Required:** Authentication from R to SharePoint requires that you can successfully log into and access the target SharePoint site through your default web browser.
