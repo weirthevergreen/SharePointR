@@ -1,0 +1,40 @@
+#' SharePointR: Tools for Accessing and Reading Files Stored on SharePoint
+#'
+#' The SharePointR package provides functions for downloading, reading, and writing
+#' common file types (CSV, Excel, RData) stored on SharePoint. It handles authentication
+#' via Microsoft Graph API via the Microsoft365R package.
+#'
+#' @section Key Functions:
+#' \itemize{
+#'   \item \code{\link{connect_sharepoint}}: Authenticate and retrieve access token
+#'   \item \code{\link{get_sp_drive}}: Retrieve a SharePoint drive object
+#'
+#'   \item \code{\link{read_sp_csv}}: Download and read a CSV file from SharePoint
+#'   \item \code{\link{write_sp_csv}}: Write a CSV file to SharePoint
+#'
+#'   \item \code{\link{read_sp_excel}}: Download and read an Excel file from SharePoint
+#'   \item \code{\link{write_sp_excel}}: Write an Excel file to SharePoint
+#'
+#'   \item \code{\link{sp_load}}: Download and load an RData file from SharePoint
+#'   \item \code{\link{sp_save}}: Save and upload an RData file to SharePoint
+#'
+#'   \item \code{\link{fread_sp}}: Fast read for CSV using direct download
+#'   \item \code{\link{fwrite_sp}}: Fast write for CSV using direct upload
+#'}
+#'
+#' @section Authentication:
+#' Most functions require a valid access token provided by \code{\link{connect_sharepoint}}.
+#' The token is stored and reused internally during the R session and managed by the MS365R package.
+#'
+#' Authentication from R to SharePoint requires that you can successfully
+#' log into and access the target SharePoint site through your default web browser. If you
+#' encounter HTTP 401 (Unauthorized) errors during connection, ensure that you can open and
+#' navigate the desired SharePoint site in your default browser before attempting to connect
+#' via the SharePointR package. This browser-based authentication prerequisite is necessary
+#' for the underlying Microsoft365R authentication flow.
+#'
+#' @docType package
+"_PACKAGE"
+#' @author Alex Weirth, Evergreen Economics
+#' @keywords package
+NULL

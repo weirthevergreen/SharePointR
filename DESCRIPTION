@@ -1,0 +1,18 @@
+Package: SharePointR
+Title: Functionality to connect to Microsoft Sharepoint from R
+Version: 0.1.0
+Authors@R: person("Alex", "Weirth", , "weirth@evergreenecon.com", role = c("aut", "cre"))
+Description: Provides a set of functions to connect to Microsoft SharePoint and
+    read/write files directly from R. Includes support for CSV files, Excel files,
+    and R data files (.RData, .rda). Enables authenticated access to SharePoint
+    sites and drives with easy-to-use functions for seamless data exchange with
+    SharePoint repositories.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+Imports: 
+    Microsoft365R,
+    tools,
+    openxlsx,
+    data.table
