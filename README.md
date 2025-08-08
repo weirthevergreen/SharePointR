@@ -52,7 +52,9 @@ gitcreds::gitcreds_set()
 library(SharePointR)
 
 # Step 1: Connect to your SharePoint site
-site <- connect_sharepoint("https://yourcompany.sharepoint.com/sites/yoursite")
+site_url <- "https://yourcompany.sharepoint.com/sites/yoursite"
+tenant <- "yourcompany"
+site <- connect_sharepoint(site_url, tenant)
 
 # Step 2: Get a drive object (usually "Documents")
 drive <- get_sp_drive(site, "Documents")
