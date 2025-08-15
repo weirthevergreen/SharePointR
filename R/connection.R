@@ -7,7 +7,7 @@
 #' @param site_url Character string. The URL of the SharePoint site to connect to.
 #' @param tenant Character string. Tenant name of the desired SharePoint site.
 #' @param app Character string. The client ID of the application to use for authentication.
-#'
+#' @param ... Additional arguments passed to the underlying authentication method.
 #' @return A SharePoint site object that can be used with other SharePointR functions.
 #'
 #' @details
@@ -20,10 +20,9 @@
 #' @examples
 #' \dontrun{
 #' # Connect to a SharePoint site
-#' site <- connect_sharepoint("https://example.sharepoint.com/sites/mysite")
-#'
-#' # Connect with explicit tenant
-#' site <- connect_sharepoint("https://example.sharepoint.com/sites/mysite", "example")
+#' site <- connect_sharepoint(site_url = "https://example.sharepoint.com/sites/mysite",
+#'                            tenant = "tenant name",
+#'                            app = "CLIENT ID")
 #' }
 #'
 #' @export
