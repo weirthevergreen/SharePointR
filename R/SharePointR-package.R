@@ -20,6 +20,9 @@
 #'
 #'   \item \code{\link{fread_sp}}: Fast read for CSV using direct download
 #'   \item \code{\link{fwrite_sp}}: Fast write for CSV using direct upload
+#'
+#'   \item \code{\link{sp_read_rds}}: Download and read an RDS file from SharePoint
+#'   \item \code{\link{sp_write_rds}}: Write an RDS file to SharePoint
 #'}
 #'
 #' @section Authentication:

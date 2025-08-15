@@ -6,6 +6,7 @@
 #'
 #' @param site_url Character string. The URL of the SharePoint site to connect to.
 #' @param tenant Character string. Tenant name of the desired SharePoint site.
+#' @param app Character string. The client ID of the application to use for authentication.
 #'
 #' @return A SharePoint site object that can be used with other SharePointR functions.
 #'
@@ -26,13 +27,43 @@
 #' }
 #'
 #' @export
-connect_sharepoint <- function(site_url, tenant = NULL) {
+connect_sharepoint <- function(site_url, tenant, app, ...) {
   message("Connecting to SharePoint site...")
-  # Provide flexibility if there is no tenant name
-  if (is.null(tenant)) {
-    site <- Microsoft365R::get_sharepoint_site(site_url = site_url)
-  } else {
-    site <- Microsoft365R::get_sharepoint_site(site_url = site_url, tenant = tenant)
+
+  if (is.null(site_url) || length(site_url) == 0 || site_url == "") {
+    stop("Error: site_url is required and cannot be empty")
+  }
+  if (is.null(tenant) || length(tenant) == 0 || tenant == "") {
+    stop("Error: tenant is required and cannot be empty")
+  }
+  if (is.null(app) || length(app) == 0 || app == "") {
+    stop("Error: app is required and cannot be empty")
+  }
+
+  # Check if user tried to pass scopes
+  dots <- list(...)
+  if ("scopes" %in% names(dots)) {
+    stop("Error: Custom scopes are not allowed for security compliance.")
+  }
+
+  # Build safe argument list
+  args <- list(
+    site_url = site_url,
+    tenant = tenant,
+    app = app,
+    scopes = "Sites.ReadWrite.All"
+  )
+
+  # Add other safe parameters (exclude blocked ones)
+  safe_params <- dots[!names(dots) %in% c("scopes", "site_url", "tenant", "app")]
+  args <- c(args, safe_params)
+
+  site <- do.call(Microsoft365R::get_sharepoint_site, args)
+
+  # List granted scopes for this app
+  if (!is.null(site$token$credentials$scope)) {
+    granted_scopes <- strsplit(site$token$credentials$scope, " ")[[1]]
+    message("Granted scopes: ", paste(granted_scopes, collapse = ", "))
   }
   return(site)
 }
