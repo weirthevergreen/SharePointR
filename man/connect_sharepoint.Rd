@@ -4,12 +4,16 @@
 \alias{connect_sharepoint}
 \title{Connect to SharePoint Site}
 \usage{
-connect_sharepoint(site_url, tenant = NULL)
+connect_sharepoint(site_url, tenant, app, ...)
 }
 \arguments{
 \item{site_url}{Character string. The URL of the SharePoint site to connect to.}
 
 \item{tenant}{Character string. Tenant name of the desired SharePoint site.}
+
+\item{app}{Character string. The client ID of the application to use for authentication.}
+
+\item{...}{Additional arguments passed to the underlying authentication method.}
 }
 \value{
 A SharePoint site object that can be used with other SharePointR functions.
@@ -28,10 +32,9 @@ to access the SharePoint site in your default browser.
 \examples{
 \dontrun{
 # Connect to a SharePoint site
-site <- connect_sharepoint("https://example.sharepoint.com/sites/mysite")
-
-# Connect with explicit tenant
-site <- connect_sharepoint("https://example.sharepoint.com/sites/mysite", "example")
+site <- connect_sharepoint(site_url = "https://example.sharepoint.com/sites/mysite",
+                           tenant = "tenant name",
+                           app = "CLIENT ID")
 }
 
 }
